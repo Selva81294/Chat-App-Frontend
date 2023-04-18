@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Lily+Script+One&display=swap');
+
+.css-u6v8er > p{
+    font-family: 'Lily Script One', cursive !important;
+    font-size: 40px !important;
+    font-weight: bolder;
+    color:darkblue;
+    margin-bottom: 30px;
+}
+
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root{
+    margin-top: 12px;
+}
+
+#pic > body{
+    background-color: inherit !important;
+}
