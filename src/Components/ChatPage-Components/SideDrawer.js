@@ -213,7 +213,7 @@ const renderNotify = (
       const config = { headers: { "x-auth-token": token } };
 
       const { data } = await axios.get(
-        `http://localhost:8000/api/usersquery?search=${search}`,
+        `https://chat-app-backend-zcfs.onrender.com/api/usersquery?search=${search}`,
         config
       );
       setLoading(false);
@@ -232,7 +232,7 @@ const renderNotify = (
       };
 
       const { data } = await axios.post(
-        "http://localhost:8000/api/chat",
+        "https://chat-app-backend-zcfs.onrender.com/api/chat",
         { userId },
         config
       );

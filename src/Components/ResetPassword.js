@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   const handleForgotPassword = async (event ) =>{
     event.preventDefault();
     try {
-      const res = await fetch("http://localhost:8000/api/forgotpassword", {
+      const res = await fetch("https://chat-app-backend-zcfs.onrender.com/api/forgotpassword", {
         method: "POST", crossDomain: true,
         body: JSON.stringify({
           email,

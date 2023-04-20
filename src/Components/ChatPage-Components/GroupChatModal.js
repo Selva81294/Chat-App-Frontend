@@ -47,7 +47,7 @@ const GroupChatModal = ({ children }) => {
       setLoading(true);
       const config = { headers: { "x-auth-token": token } };
       const { data } = await axios.get(
-        `http://localhost:8000/api/usersquery?search=${search}`,
+        `https://chat-app-backend-zcfs.onrender.com/api/usersquery?search=${search}`,
         config
       );
       console.log(data);
@@ -66,7 +66,7 @@ const GroupChatModal = ({ children }) => {
     try {
       const config = { headers: { "x-auth-token": token } };
       const { data } = await axios.post(
-        "http://localhost:8000/api/chat/group",
+        "https://chat-app-backend-zcfs.onrender.com/api/chat/group",
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

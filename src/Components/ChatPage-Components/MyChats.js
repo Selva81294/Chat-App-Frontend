@@ -17,7 +17,7 @@ const MyChats = ({fetchAgain}) => {
     const config = { headers: { "x-auth-token": token } };
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/api/chat",
+        "https://chat-app-backend-zcfs.onrender.com/api/chat",
         config
       );
       setChats(data);

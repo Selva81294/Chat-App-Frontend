@@ -46,7 +46,7 @@ useEffect(()=>{
         event.preventDefault();
         setLoading(true)
         try {
-          const res = await fetch("http://localhost:8000/api/signup", {
+          const res = await fetch("https://chat-app-backend-zcfs.onrender.com/api/signup", {
             method: "POST",
             body: JSON.stringify({
               name,
@@ -71,7 +71,7 @@ useEffect(()=>{
         event.preventDefault();
         setLoading(true)
         try {
-          const res = await fetch("http://localhost:8000/api/login", {
+          const res = await fetch("https://chat-app-backend-zcfs.onrender.com/api/login", {
             method: "POST",
             body: JSON.stringify({
               email,
@@ -111,7 +111,7 @@ useEffect(()=>{
       )
     }
 
-    if (pics.type === "image/jpeg" || pics.type === "image.png"){
+    if (pics.type === "image/jpeg" || pics.type === "image.png" || pics.type === "image.jpg"){
       const data = new FormData();
       data.append("file", pics)
       data.append("upload_preset", "Fun-Chaters")

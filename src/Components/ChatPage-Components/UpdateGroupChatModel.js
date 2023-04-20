@@ -41,7 +41,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain , fetchMessages}) => {
     try {
       setLoading(true)
       const config = { headers: { "x-auth-token": token } };
-      const {data} = await axios.put("http://localhost:8000/api/chat/groupremove",{
+      const {data} = await axios.put("https://chat-app-backend-zcfs.onrender.com/api/chat/groupremove",{
         chatId: selectedChat._id,
         userId: removeuser._id
       },config);
@@ -70,7 +70,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain , fetchMessages}) => {
     try {
       setLoading(true)
       const config = { headers: { "x-auth-token": token } };
-      const {data} = await axios.put("http://localhost:8000/api/chat/groupadd",{
+      const {data} = await axios.put("https://chat-app-backend-zcfs.onrender.com/api/chat/groupadd",{
         chatId: selectedChat._id,
         userId: adduser._id
       },config);
@@ -90,7 +90,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain , fetchMessages}) => {
     try {
       setRenameLoading(true)
       const config = { headers: { "x-auth-token": token } };
-      const {data} = await axios.put("http://localhost:8000/api/chat/rename",{
+      const {data} = await axios.put("https://chat-app-backend-zcfs.onrender.com/api/chat/rename",{
         chatId: selectedChat._id,
         chatName: groupChatName,
       },config);
@@ -116,7 +116,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain , fetchMessages}) => {
       setLoading(true);
       const config = { headers: { "x-auth-token": token } };
       const { data } = await axios.get(
-        `http://localhost:8000/api/usersquery?search=${search}`,
+        `https://chat-app-backend-zcfs.onrender.com/api/usersquery?search=${search}`,
         config
       );
       setLoading(false);
