@@ -17,7 +17,7 @@ import { io } from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../../typing graphic/107605-typing.json"
 
-const ENDPOINT = "https://chat-app-backend-zcfs.onrender.com/api";
+const ENDPOINT = "https://chat-app-backend-zcfs.onrender.com";
 
 let socket, selectedChatCompare;
 
