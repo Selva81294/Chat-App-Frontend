@@ -18,15 +18,14 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { Alert, AlertTitle } from "@mui/material";
 
 const HomePage = () => {
-  const history = useHistory()
+  const history = useHistory();
 
-useEffect(()=>{
-  const user = JSON.parse(localStorage.getItem("userinfo"));
-  if(user) {
-    history.push("/chats")
-  }
-},[history])
-
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userinfo"));
+    if (user) {
+      history.push("/chats");
+    }
+  }, [history]);
 
   const [register, setRegister] = useState(false);
   const [name, setName] = useState("");
@@ -43,96 +42,108 @@ useEffect(()=>{
   };
 
   const handleSignUp = async (event) => {
-        event.preventDefault();
-        setLoading(true)
-        try {
-          const res = await fetch("https://chat-app-backend-zcfs.onrender.com/api/signup", {
-            method: "POST",
-            body: JSON.stringify({
-              name,
-              email,
-              password,
-              pic
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          const data = await res.json();
-          setLoading(false)
-          setMessage(data.message);
-        } catch (error) {
-          setLoading(false)
-          console.log(error);
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://chat-app-backend-zcfs.onrender.com/api/signup",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            pic,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      };
-    
-      const handleLogin = async (event) => {
-        event.preventDefault();
-        setLoading(true)
-        try {
-          const res = await fetch("https://chat-app-backend-zcfs.onrender.com/api/login", {
-            method: "POST",
-            body: JSON.stringify({
-              email,
-              password,
-            }),
-            headers: {
-              "Content-Type": "application/json"
-            },
-          });
-          const data = await res.json();
-          const userData = JSON.stringify(data.user)
-          localStorage.setItem("userinfo", userData);
-          localStorage.setItem("token", data.token);
-          setMessage(data.message);
-          if(userData){
-            setLoading(false)
-            history.push('/chats')
-          }
-          else{
-            setLoading(false)
-            setMessage(data.message)
-          }
-        } catch (error) {
-          setLoading(false)
-          console.log(error);
+      );
+      const data = await res.json();
+      setLoading(false);
+      setMessage(data.message);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://chat-app-backend-zcfs.onrender.com/api/login",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      };
+      );
+      const data = await res.json();
+      const userData = JSON.stringify(data.user);
+      localStorage.setItem("userinfo", userData);
+      localStorage.setItem("token", data.token);
+      setMessage(data.message);
+      if (userData) {
+        setLoading(false);
+        history.push("/chats");
+      } else {
+        setLoading(false);
+        setMessage(data.message);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
 
   const postDetails = (pics) => {
-    setLoading(true)
-    if (pics === undefined){
-      return(
+    setLoading(true);
+    if (pics === undefined) {
+      return (
         <Alert severity="warning">
-        <AlertTitle>Warning</AlertTitle>
-        This is a warning alert — <strong>Please select an image!</strong>
-      </Alert>
-      )
+          <AlertTitle>Warning</AlertTitle>
+          This is a warning alert — <strong>Please select an image!</strong>
+        </Alert>
+      );
     }
 
-    if (pics.type === "image/jpeg" || pics.type === "image.png" || pics.type === "image.jpg"){
+    if (
+      pics.type === "image/jpeg" ||
+      pics.type === "image.png" ||
+      pics.type === "image.jpg"
+    ) {
       const data = new FormData();
-      data.append("file", pics)
-      data.append("upload_preset", "Fun-Chaters")
-      data.append("cloud_name", "selva-app")
-      fetch("https://api.cloudinary.com/v1_1/selva-app/image/upload", {method: "post", body: data})
-      .then((res)=>res.json())
-      .then((data)=>{
-        setPic(data.url.toString());
-        setLoading(false);
+      data.append("file", pics);
+      data.append("upload_preset", "Fun-Chaters");
+      data.append("cloud_name", "selva-app");
+      fetch("https://api.cloudinary.com/v1_1/selva-app/image/upload", {
+        method: "post",
+        body: data,
       })
-      .catch((err)=>{
-        console.log(err);
-        setLoading(false)
-      })
-    } else{
-      return(
+        .then((res) => res.json())
+        .then((data) => {
+          setPic(data.url.toString());
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      return (
         <Alert severity="warning">
-        <AlertTitle>Warning</AlertTitle>
-        This is a warning alert — <strong>Please select an image!</strong>
-      </Alert>
-      )
+          <AlertTitle>Warning</AlertTitle>
+          This is a warning alert — <strong>Please select an image!</strong>
+        </Alert>
+      );
     }
   };
 
@@ -378,6 +389,26 @@ useEffect(()=>{
               )}
             </Grid>
           </Grid>
+          {register ?  "" : (
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "20px",
+              border: "1px solid red",
+              padding: "10px",
+            }}
+          >
+            <h3>Sample logins</h3>
+            <p>
+              Email: selva@gmail.com{" "}
+              <span style={{ marginLeft: "10px" }}>PW: Selva123</span>
+            </p>
+            <p>
+              Email: abcd@gmail.com{" "}
+              <span style={{ marginLeft: "10px" }}>PW: Selva123</span>
+            </p>
+          </div>
+          )}
         </Box>
       </Container>
     </Container>
